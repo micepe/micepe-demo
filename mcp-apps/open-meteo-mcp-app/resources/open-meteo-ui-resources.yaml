@@ -1,0 +1,33 @@
+apiVersion: micepe.io/v1alpha1
+kind: Resources
+service:
+  name: Open-Meteo MCP app
+  version: '1.0'
+resources:
+  'ui://info/mcp-app.html':
+    name: Basic info page
+    description: Display basic info about Open-Meteo get_v1_forecast tool
+    mimeType: text/html;profile=mcp-app
+    remoteContent: <YOUR-APP-URL-HERE-EX-NGROK>/mcp-app.html
+    _meta:
+      domain: open-meteo.com
+      prefersBoarder: true
+      permissions:
+        camera: {}
+        microphone: {}
+        geolocation: {}
+        clipboardWrite: {}
+      csp:
+        connectDomains:
+          - open-meteo.com
+        resourceDomains:
+          - micepe.io
+        frameDomains:
+          - open-meteo.com
+        baseUriDomains:
+          - open-meteo.com
+    tools:
+      - get_v1_forecast:
+          visibility:
+            - app
+            - model
