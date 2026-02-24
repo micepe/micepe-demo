@@ -5,27 +5,30 @@ service:
   version: '1.0'
 resources:
   'ui://info/mcp-app.html':
-    name: Basic info page
-    description: Display basic info about Open-Meteo get_v1_forecast tool
+    name: Weather Forecast Dashboard
+    description: Interactive weather dashboard using Open-Meteo forecast API with location search and map display
     mimeType: text/html;profile=mcp-app
     remoteContent: <YOUR-APP-URL-HERE-EX-NGROK>/mcp-app.html
     _meta:
-      domain: open-meteo.com
+      domain: weather-mcp-app.example.com
       prefersBoarder: true
       permissions:
-        camera: {}
-        microphone: {}
         geolocation: {}
         clipboardWrite: {}
       csp:
         connectDomains:
+          - api.open-meteo.com
+          - geocoding-api.open-meteo.com
           - open-meteo.com
         resourceDomains:
-          - micepe.io
+          - cdn.jsdelivr.net
+          - fonts.googleapis.com
+          - fonts.gstatic.com
         frameDomains:
-          - open-meteo.com
+          - www.openstreetmap.org
+          - tile.openstreetmap.org
         baseUriDomains:
-          - open-meteo.com
+          - weather-mcp-app.example.com
     tools:
       - get_v1_forecast:
           visibility:
